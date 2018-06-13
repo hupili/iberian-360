@@ -46,7 +46,12 @@
 <body>
 
     <a-scene>
-        <a-sky id="sky" src="1.jpeg" rotation="0 0 0"></a-sky>
+        <a-sky id="sky" src="1.jpeg" rotation="0 0 0">
+            <a-animation attribute="rotation" fill="forwards" easing="linear" dur="30000" from="0 0 0" to="0 360 0" repeat="indefinite"></a-animation>
+
+            <!-- May be stop animation in this way: https://github.com/aframevr/aframe/issues/2157 -->
+
+        </a-sky>
 
     </a-scene>
     <style>
@@ -177,7 +182,7 @@
         }
 
         function hideMessage() {
-            document.getElementById('message' + currentIndex).setAttribute('class', 'hide')
+            // document.getElementById('message' + currentIndex).setAttribute('class', 'hide')
         }
 
         // document.getElementById('left').onclick = slideLeft;
