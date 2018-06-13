@@ -5,20 +5,85 @@
     <meta charset="utf-8">
     <title>Panorama</title>
     <meta name="description" content="Panorama — A-Frame">
-    <script src="aframe.js"></script>
+    <script src="aframe-v0.8.2.min.js"></script>
+
+    <style>
+        i {
+            border: solid black;
+            border-width: 0 5px 5px 0;
+            display: inline-block;
+            padding: 9px;
+        }
+        
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+        
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+        
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+        
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
 
 </head>
 
 <body>
+
     <a-scene>
         <a-sky id="sky" src="1.jpeg" rotation="0 0 0"></a-sky>
-    </a-scene>
 
+    </a-scene>
+    <style>
+        .overlay#left {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+        }
+        
+        .overlay#right {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+        }
+    </style>
+    <div id="left" class="overlay">
+        <i class="left"></i>
+    </div>
+    <div id="right" class="overlay">
+        <i class="right"></i>
+    </div>
     <script>
-        var sky = document.getElementById('sky')
-        console.log(sky)
-        sky.setAttribute("src", "2.jpeg")
-        console.log(sky)
+        var currentIndex = 0;
+
+        function updateScene() {
+            var sky = document.getElementById('sky')
+            console.log(sky)
+            sky.setAttribute("src", `${currentIndex}.jpeg`)
+            console.log(sky)
+        }
+
+        document.getElementById('left').onclick = function() {
+            currentIndex = (currentIndex - 1 + 7) % 7;
+            updateScene();
+        }
+
+        document.getElementById('right').onclick = function() {
+            currentIndex = (currentIndex + 1) % 7;
+            updateScene();
+        }
+
+        updateScene();
     </script>
 </body>
 
