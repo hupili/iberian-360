@@ -34,6 +34,10 @@
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+        
+        .arrow {
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -45,24 +49,50 @@
 
     </a-scene>
     <style>
-        .overlay#left {
+        .overlay #left.arrow {
             position: absolute;
             top: 50%;
             left: 10px;
         }
         
-        .overlay#right {
+        .overlay #right.arrow {
             position: absolute;
             top: 50%;
             right: 10px;
         }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .overlay#left-overlay {
+            left: 0px;
+        }
+        
+        .overlay#right-overlay {
+            right: 0px;
+        }
+        
+        .overlay:hover {
+            background-color: yellow
+        }
     </style>
-    <div id="left" class="overlay">
-        <i class="left"></i>
+
+    <div id="left-overlay" class="overlay">
+        <div id="left" class="arrow">
+            <i class="left"></i>
+        </div>
     </div>
-    <div id="right" class="overlay">
-        <i class="right"></i>
+    <div id="right-overlay" class="overlay">
+        <div id="right" class="arrow">
+            <i class="right"></i>
+        </div>
     </div>
+
     <script>
         var currentIndex = 0;
 
@@ -73,15 +103,22 @@
             console.log(sky)
         }
 
-        document.getElementById('left').onclick = function() {
+        function slideLeft() {
             currentIndex = (currentIndex - 1 + 7) % 7;
             updateScene();
         }
 
-        document.getElementById('right').onclick = function() {
+        function slideRight() {
             currentIndex = (currentIndex + 1) % 7;
             updateScene();
         }
+
+        document.getElementById('left').onclick = slideLeft;
+        document.getElementById('left-overlay').onclick = slideLeft;
+
+        document.getElementById('right').onclick = slideRight;
+        document.getElementById('right-overlay').onclick = slideRight;
+
 
         updateScene();
     </script>
