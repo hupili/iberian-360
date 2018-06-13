@@ -6,6 +6,7 @@
     <title>Panorama</title>
     <meta name="description" content="Panorama — A-Frame">
     <script src="aframe-v0.8.2.min.js"></script>
+    <link rel="stylesheet" href="animate.css">
 
     <style>
         i {
@@ -80,6 +81,34 @@
         .overlay:hover {
             background-color: yellow
         }
+        
+        .message {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            width: 40%;
+            background-color: grey;
+            opacity: 0.8;
+            text-align: center;
+            font-size: 5vh;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
+            animation-duration: 3s;
+            animation-timing-function: ease-in;
+        }
+        
+        .message p {
+            opacity: 1;
+            color: white;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
     </style>
 
     <div id="left-overlay" class="overlay">
@@ -93,14 +122,44 @@
         </div>
     </div>
 
+    <div id="message0" class="message show fadeOut animated">
+        <p>This is a message 0</p>
+    </div>
+    <div id="message1" class="message hide">
+        <p>This is a message 1</p>
+    </div>
+    <div id="message2" class="message hide">
+        <p>This is a message 2</p>
+    </div>
+    <div id="message3" class="message hide">
+        <p>This is a message 3</p>
+    </div>
+    <div id="message4" class="message hide">
+        <p>This is a message 4</p>
+    </div>
+    <div id="message5" class="message hide">
+        <p>This is a message 5</p>
+    </div>
+    <div id="message6" class="message hide">
+        <p>This is a message 6</p>
+    </div>
+
     <script>
         var currentIndex = 0;
+        var isShowMessage = true;
+        var currentTimer = null;
 
         function updateScene() {
+            // clearTimeout(currentTimer)
             var sky = document.getElementById('sky')
-            console.log(sky)
+            console.log(currentIndex)
             sky.setAttribute("src", `${currentIndex}.jpeg`)
-            console.log(sky)
+                // console.log(sky)
+            var localCurrentIndex = currentIndex
+            showMessage(localCurrentIndex);
+            currentTimer = setTimeout(() => {
+                hideMessage(localCurrentIndex);
+            }, 3200);
         }
 
         function slideLeft() {
@@ -113,12 +172,19 @@
             updateScene();
         }
 
-        document.getElementById('left').onclick = slideLeft;
+        function showMessage() {
+            document.getElementById('message' + currentIndex).setAttribute('class', 'message show animated fadeOut')
+        }
+
+        function hideMessage() {
+            document.getElementById('message' + currentIndex).setAttribute('class', 'hide')
+        }
+
+        // document.getElementById('left').onclick = slideLeft;
         document.getElementById('left-overlay').onclick = slideLeft;
 
-        document.getElementById('right').onclick = slideRight;
+        // document.getElementById('right').onclick = slideRight;
         document.getElementById('right-overlay').onclick = slideRight;
-
 
         updateScene();
     </script>
