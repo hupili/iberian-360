@@ -122,30 +122,30 @@
         </div>
     </div>
 
-    <div id="message0" class="message show fadeOut animated">
-        <p>This is a message 0</p>
+    <div id="message0" class="message hide">
+        <p>马德里皇宫</p>
     </div>
     <div id="message1" class="message hide">
-        <p>This is a message 1</p>
+        <p>里斯本大航海博物馆</p>
     </div>
     <div id="message2" class="message hide">
-        <p>This is a message 2</p>
+        <p>里斯本Pátio da Galé</p>
     </div>
     <div id="message3" class="message hide">
-        <p>This is a message 3</p>
+        <p>巴塞罗那大航海博物馆</p>
     </div>
     <div id="message4" class="message hide">
-        <p>This is a message 4</p>
+        <p>马德里Plaza Mayor</p>
     </div>
     <div id="message5" class="message hide">
-        <p>This is a message 5</p>
+        <p>巴塞罗那主干道</p>
     </div>
     <div id="message6" class="message hide">
-        <p>This is a message 6</p>
+        <p>巴塞罗那生活区</p>
     </div>
 
     <script>
-        var currentIndex = 0;
+        var currentIndex = 3;
         var isShowMessage = true;
         var currentTimer = null;
 
@@ -159,7 +159,7 @@
             showMessage(localCurrentIndex);
             currentTimer = setTimeout(() => {
                 hideMessage(localCurrentIndex);
-            }, 3200);
+            }, 4);
         }
 
         function slideLeft() {
